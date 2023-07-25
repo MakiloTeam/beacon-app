@@ -3,6 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("org.jetbrains.compose")
+    kotlin("plugin.serialization") version "1.8.20"
 }
 
 kotlin {
@@ -33,6 +34,15 @@ kotlin {
                 implementation(compose.material)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+
+                implementation("io.ktor:ktor-client-core:2.0.0")
+                implementation("io.ktor:ktor-client-json:2.0.0")
+                implementation("io.ktor:ktor-client-content-negotiation:2.0.0")
+                implementation("io.ktor:ktor-client-serialization:2.0.0")
+                implementation( "io.ktor:ktor-serialization-kotlinx-json:2.0.0")
+
+                implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
             }
         }
         val androidMain by getting {
@@ -41,6 +51,9 @@ kotlin {
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.10.1")
                 implementation("com.google.accompanist:accompanist-permissions:0.30.1")
+
+                implementation("io.ktor:ktor-client-android:2.0.0")
+
             }
         }
         val iosX64Main by getting
@@ -51,6 +64,10 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+
+            dependencies {
+//                implementation("io.ktor:ktor-client-ios:2.0.0")
+            }
         }
     }
 }
@@ -74,4 +91,9 @@ android {
     kotlin {
         jvmToolchain(11)
     }
+}
+
+repositories {
+    mavenCentral()
+    google()
 }

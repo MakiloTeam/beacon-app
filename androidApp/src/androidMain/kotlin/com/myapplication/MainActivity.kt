@@ -107,16 +107,16 @@ class BeaconDetector(private val context: Context, private val callback: BeaconD
         // TODO: add more devices
         scanFilters.add(
             ScanFilter.Builder()
-                .setDeviceAddress("D9:F7:4C:01:3F:A2")
+//                .setDeviceAddress("D9:F7:4C:01:3F:A2")
                 .build()
         )
 
         bluetoothLeScanner?.startScan(scanFilters, scanSettings, scanCallback)
 
         // Stop scanning after a specified period (e.g., 10 seconds)
-        Handler().postDelayed({
-            stopScanning()
-        }, 20000)
+//        Handler().postDelayed({
+//            stopScanning()
+//        }, 20000)
     }
 
     @SuppressLint("MissingPermission")
